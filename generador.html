@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de firmas Colvea</title>
+<style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #F3F3F1; color: #33322E; }
+    header { background: #3A4596; color: #fff; padding: 16px 24px; }
+    header h1 { margin: 0; font-size: 20px; font-weight: 600; }
+    main { display: flex; flex-wrap: wrap; gap: 24px; padding: 24px; align-items: flex-start; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    form { flex: 0 1 340px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 4px; }
+    label:first-child { margin-top: 0; }
+    input { width: 100%; padding: 8px 10px; font-size: 14px; border: 1px solid #CCC; border-radius: 6px; font-family: inherit; }
+    input:focus { outline: 2px solid #3A4596; border-color: transparent; }
+    .hint { font-size: 11px; color: #888; margin-top: 3px; }
+    .preview { flex: 1 1 640px; overflow-x: auto; }
+    .preview h2 { margin: 0 0 12px; font-size: 14px; color: #666; font-weight: 600; }
+    #firma { background: #fff; padding: 10px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    button { padding: 10px 16px; font-size: 14px; font-weight: 600; border: 0; border-radius: 6px; cursor: pointer; font-family: inherit; }
+    .primary { background: #E0401A; color: #fff; }
+    .secondary { background: #E6E7F2; color: #3A4596; }
+    #msg { font-size: 13px; color: #2E7D32; margin-top: 10px; min-height: 18px; }
+</style>
+</head>
+<body>
+<header><h1>Generador de firmas Colvea</h1></header>
+<main>
+    <form class="card" id="form" autocomplete="off">
+        <label for="nombre">Nombre y apellido</label>
+        <input id="nombre" value="Arnau Álvarez">
+
+        <label for="cargo">Cargo</label>
+        <input id="cargo" value="Dirección">
+
+        <label for="email">Email</label>
+        <input id="email" type="email" value="arnau@corkseal.es">
+
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" value="+34 661 31 30 23">
+        <div class="hint">Con prefijo, p. ej. +34 600 00 00 00</div>
+
+        <label for="direccion">Dirección</label>
+        <input id="direccion" value="C/ Isaac Peral, 3B local 2, 08224 Terrassa">
+
+        <label for="mapa">Enlace Google Maps</label>
+        <input id="mapa" value="https://maps.app.goo.gl/BUeytBcy65aFRbYp6">
+
+        <div class="actions">
+            <button type="button" class="primary" id="copiar">Copiar firma</button>
+            <button type="button" class="secondary" id="descargar">Descargar HTML</button>
+        </div>
+        <div id="msg"></div>
+    </form>
+
+    <section class="card preview">
+        <h2>Vista previa</h2>
+        <div id="firma"></div>
+    </section>
+</main>
+
+<script>
+const IMG = 'https://wsrv.nl/?url=raw.githubusercontent.com/corkseal-es/colvea-firmas/main/img/';
+const FONT = "'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif";
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const val = id => document.getElementById(id).value.trim();
+
+function icono(nombre, url, alt, ultimo) {
+    return `<td${ultimo ? '' : ' style="padding-right: 7px;"'}>
+        <a href="${url}" style="text-decoration: none;"><img src="${IMG}${nombre}.png&amp;w=50&amp;output=png&amp;v=2" alt="${alt}" width="25" height="25" style="display: block; border: 0; width: 25px; height: 25px;"></a>
+    </td>`;
+}
+
+function firmaHTML(d) {
+    const tel = d.telefono.replace(/[^\d+]/g, '');
+    const mapa = d.mapa ? esc(d.mapa) : 'https://maps.google.com/?q=' + encodeURIComponent(d.direccion);
+    return `<table cellpadding="0" cellspacing="0" border="0" width="600" style="width: 600px; border-collapse: collapse; background-color: #FFFFFF; font-family: ${FONT}; color: #33322E;">
+<tr><td height="122" style="height: 122px;">
+    <table cellpadding="0" cellspacing="0" border="0" width="600" height="122" style="width: 600px; height: 122px; border-collapse: collapse;">
+    <tr>
+        <td width="45" style="width: 45px; font-size: 0; line-height: 0;">&nbsp;</td>
+        <td width="115" valign="top" style="width: 115px; padding-top: 37px;">
+            <a href="https://colvea.es" style="text-decoration: none;"><img src="${IMG}logo.png&amp;w=230&amp;output=png" alt="Colvea by CorkSeal" width="115" height="82" style="display: block; border: 0; width: 115px; height: 82px;"></a>
+        </td>
+        <td width="41" style="width: 41px; font-size: 0; line-height: 0;">&nbsp;</td>
+        <td width="1" valign="top" style="width: 1px; padding-top: 37px;">
+            <div style="width: 1px; height: 85px; background-color: #BDBDBD; font-size: 0; line-height: 0;">&nbsp;</div>
+        </td>
+        <td width="34" style="width: 34px; font-size: 0; line-height: 0;">&nbsp;</td>
+        <td width="261" valign="top" style="width: 261px; padding-top: 34px;">
+            <p style="margin: 0; font-family: 'Helvetica Neue', 'Segoe UI Semibold', Roboto, Arial, sans-serif; font-size: 24px; line-height: 28px; font-weight: 500; color: #33322E;">${esc(d.nombre)}</p>
+            <p style="margin: 0; font-family: 'Helvetica Neue', 'Segoe UI Light', Roboto, Arial, sans-serif; font-size: 19px; line-height: 20px; font-weight: 300; color: #E0401A;">${esc(d.cargo)}</p>
+            <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 16px; font-weight: 400;">
+                <a href="mailto:${esc(d.email)}" style="color: #33322E; text-decoration: none;">${esc(d.email)}</a>
+            </p>
+        </td>
+        <td width="89" valign="top" align="right" style="width: 89px; padding: 11px 14px 0 0;">
+            <table cellpadding="0" cellspacing="0" border="0"><tr>
+                ${icono('instagram', 'https://www.instagram.com/colvea.es', 'Instagram')}
+                ${icono('linkedin', 'https://www.linkedin.com/company/colvea', 'LinkedIn')}
+                ${icono('youtube', 'https://www.youtube.com/@colvea', 'YouTube', true)}
+            </tr></table>
+            <p style="margin: 2px 0 0 0; font-size: 14px; line-height: 17px; font-weight: 500; text-align: right; white-space: nowrap;">
+                <a href="https://colvea.es" style="color: #33322E; text-decoration: none;">colvea.es</a>
+            </p>
+        </td>
+    </tr>
+    </table>
+</td></tr>
+<tr><td>
+    <table cellpadding="0" cellspacing="0" border="0" width="600" style="width: 600px; border-collapse: collapse;">
+    <tr>
+        <td width="236" style="width: 236px; font-size: 0; line-height: 0;">&nbsp;</td>
+        <td width="327" height="34" bgcolor="#3A4596" style="width: 327px; height: 34px; background-color: #3A4596; border-top-left-radius: 40px 34px; padding: 0 0 0 37px; vertical-align: middle;">
+            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;"><tr>
+                <td style="font-size: 11px; line-height: 15px; white-space: nowrap; font-weight: 600;">
+                    <a href="tel:${esc(tel)}" style="color: #FFFFFF; text-decoration: none;">${esc(d.telefono)}</a>
+                </td>
+                <td style="padding: 0 10px;">
+                    <div style="width: 1px; height: 11px; background-color: #8D95D0; font-size: 0; line-height: 0;">&nbsp;</div>
+                </td>
+                <td style="font-size: 11px; line-height: 15px; white-space: nowrap; font-weight: 600;">
+                    <a href="${mapa}" style="color: #FFFFFF; text-decoration: none;">${esc(d.direccion)}</a>
+                </td>
+            </tr></table>
+        </td>
+    </tr>
+    </table>
+</td></tr>
+<tr><td style="padding: 15px 0 0 0;">
+    <p style="margin: 0; font-size: 10px; line-height: 1.4; color: #999999; text-align: justify;">
+        De conformidad con lo que dispone la normativa vigente de protección de datos personales, el Reglamento (UE) 2016/679 de 27 de abril de 2016 (RGPD) y la Ley Orgánica 3/2018 de 5 de diciembre de Protección de datos personales y garantía de los Derechos Digitales, le informamos que los datos personales incluidos en esta comunicación serán tratados por <strong>CorkSeal, S.L.</strong> Le informamos que puede ejercer los derechos de acceso, rectificación, portabilidad y supresión de los datos y los de limitación y oposición a su tratamiento dirigiéndose al correo electrónico <a href="mailto:administracion@corkseal.es" style="color: #E0401A; text-decoration: none;">administracion@corkseal.es</a>. Si considera que el tratamiento no se ajusta a la normativa vigente, podrá presentar una reclamación ante la autoridad de control en <a href="https://www.aepd.es" style="color: #E0401A; text-decoration: none;">agpd.es</a>.
+    </p>
+</td></tr>
+</table>`;
+}
+
+const datos = () => ({
+    nombre: val('nombre'), cargo: val('cargo'), email: val('email'),
+    telefono: val('telefono'), direccion: val('direccion'), mapa: val('mapa')
+});
+
+function render() { document.getElementById('firma').innerHTML = firmaHTML(datos()); }
+
+function aviso(t) {
+    const m = document.getElementById('msg');
+    m.textContent = t;
+    clearTimeout(aviso.t);
+    aviso.t = setTimeout(() => m.textContent = '', 4000);
+}
+
+document.getElementById('form').addEventListener('input', render);
+
+document.getElementById('copiar').addEventListener('click', async () => {
+    const html = firmaHTML(datos());
+    try {
+        await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([html], { type: 'text/html' }),
+            'text/plain': new Blob([document.getElementById('firma').innerText], { type: 'text/plain' })
+        })]);
+    } catch (e) {
+        // Alternativa para navegadores sin ClipboardItem: seleccionar la vista previa y copiar
+        const r = document.createRange();
+        r.selectNodeContents(document.getElementById('firma'));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        document.execCommand('copy');
+        s.removeAllRanges();
+    }
+    aviso('Firma copiada. Pégala en la configuración de firma de tu correo.');
+});
+
+document.getElementById('descargar').addEventListener('click', () => {
+    const d = datos();
+    const doc = `<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n</head>\n<body style="margin: 0; padding: 0; font-family: ${FONT}; color: #33322E;">\n${firmaHTML(d)}\n</body>\n</html>\n`;
+    const slug = d.nombre.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
+    a.download = `firma_${slug || 'colvea'}-colvea.html`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    aviso('HTML descargado.');
+});
+
+render();
+</script>
+</body>
+</html>
