@@ -1,0 +1,65 @@
+[
+  {
+    "email": "arnau@corkseal.es",
+    "nombre": "Arnau Álvarez",
+    "cargo": "Dirección",
+    "telefono": "+34 661 31 30 23",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": "fitlock"
+  },
+  {
+    "email": "artur@corkseal.es",
+    "nombre": "Artur Álvarez",
+    "cargo": "RRHH",
+    "telefono": "+34 670 26 87 25",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": ""
+  },
+  {
+    "email": "edgar@corkseal.es",
+    "nombre": "Edgar Quirante",
+    "cargo": "Marketing & IT Manager",
+    "telefono": "+34 615 09 87 58",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": "fitlock"
+  },
+  {
+    "email": "marco@corkseal.es",
+    "nombre": "Marco Centinaro",
+    "cargo": "Comercial",
+    "telefono": "+34 649 70 84 63",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": ""
+  },
+  {
+    "email": "pedro@corkseal.es",
+    "nombre": "Pedro Latorre",
+    "cargo": "Comercial",
+    "telefono": "+34 685 44 02 22",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": ""
+  },
+  {
+    "email": "renato@corkseal.es",
+    "nombre": "Renato Mendoza",
+    "cargo": "Responsable Bioconstrucción",
+    "telefono": "+34 695 05 98 09",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": "sace-components"
+  },
+  {
+    "email": "salva@corkseal.es",
+    "nombre": "Salvador Álvarez",
+    "cargo": "Director Técnico",
+    "telefono": "+34 620 83 15 87",
+    "direccion": "C/ Isaac Peral, 3B local 2, 08224 Terrassa",
+    "mapa": "https://maps.app.goo.gl/BUeytBcy65aFRbYp6",
+    "banner": "fitlock"
+  }
+]

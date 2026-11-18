@@ -1,0 +1,84 @@
+[
+  {
+    "id": "maderalia",
+    "nombre": "Feria Maderalia 2026",
+    "tipo": "imagen",
+    "ruta": "img/banner-maderalia.png",
+    "ancho": 1200,
+    "alto": 380,
+    "enlace": "https://colvea.es",
+    "alt": "Nos vemos en la feria de Maderalia. Del 10 al 13 de noviembre. Stands Fitlock y Sace Components"
+  },
+  {
+    "id": "nueva-web",
+    "nombre": "Nueva web",
+    "tipo": "imagen",
+    "ruta": "panel/datos/banners/nueva-web.png",
+    "ancho": 674,
+    "alto": 214,
+    "enlace": "https://colvea.es",
+    "alt": "Visita nuestra nueva web: colvea.es"
+  },
+  {
+    "id": "fitlock",
+    "nombre": "Fitlock",
+    "tipo": "disenado",
+    "ruta": "panel/datos/banners/fitlock-48ce9570.png",
+    "ancho": 1200,
+    "alto": 380,
+    "enlace": "https://colvea.es/fitlock?utm_source=firma_email&utm_medium=banner&utm_campaign=fitlock",
+    "alt": "Fitlock® - Fijación oculta a presión",
+    "diseno": {
+      "paradas": [
+        {
+          "color": "#1E2870",
+          "pos": 0
+        },
+        {
+          "color": "#3A4596",
+          "pos": 64
+        },
+        {
+          "color": "#8D95D0",
+          "pos": 100
+        }
+      ],
+      "desenfoque": 30,
+      "pastilla": "FIJACIÓN OCULTA FITLOCK®",
+      "titulo": "Fijación oculta a presión",
+      "detalle": "Instala paneles en segundos con un acabado invisible. Descúbrelo →",
+      "colorPastilla": "#292929",
+      "colorTexto": "#ffffff",
+      "sombra": false
+    }
+  },
+  {
+    "id": "sace-components",
+    "nombre": "Sace Components",
+    "tipo": "disenado",
+    "ruta": "panel/datos/banners/sace-components-d6a97974.png",
+    "ancho": 1200,
+    "alto": 380,
+    "enlace": "https://colvea.es/sace-components?utm_source=firma_email&utm_medium=banner&utm_campaign=sace-components",
+    "alt": "Sace Components - Bioconstrucción de alta eficiencia",
+    "diseno": {
+      "paradas": [
+        {
+          "color": "#004217",
+          "pos": 0
+        },
+        {
+          "color": "#007a2b",
+          "pos": 57
+        }
+      ],
+      "desenfoque": 30,
+      "pastilla": "SACE COMPONENTS",
+      "titulo": "Bioconstrucción de alta eficiencia",
+      "detalle": "Máximo aislamiento y control de humedad. Descúbrelos →",
+      "colorPastilla": "#1c1c1c",
+      "colorTexto": "#ffffff",
+      "sombra": false
+    }
+  }
+]
